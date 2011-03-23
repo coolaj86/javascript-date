@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  require('./date');
+  require('date');
 
   var assert = require('assert'),
     d = process.argv[2] || (new Date()).toISOString();

@@ -1,0 +1,26 @@
+{
+  "name": "date",
+  "description": "Date and Time tools for Browser JavaScript and Node.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/coolaj86/javascript-date",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coolaj86/javascript-date.git"
+  },
+  "author": "Andrea Giammarchi (http://http://webreflection.blogspot.com/)",
+  "contributors": [
+    { "name": "AJ ONeal", "email": "coolaj86@gmail.com" }
+  ],
+  "directories": {
+    "lib": "."
+  },
+  "scripts": {
+    "test": "node date-test.js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "require-kiss": ">= 1.0.5"
+  }
+}
