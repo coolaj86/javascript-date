@@ -20,6 +20,7 @@
   "engines": {
     "node": "*"
   },
+  "main": "./date",
   "dependencies": {
     "require-kiss": ">= 1.0.5"
   }
