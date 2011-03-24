@@ -92,5 +92,5 @@
     Date.prototype.toISOString = Date.prototype.toISOString || toISOString;
   }
 
-  provide('./date-es5');
+  provide('date');
 }());
