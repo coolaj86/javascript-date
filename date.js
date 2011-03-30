@@ -1,7 +1,7 @@
-/*jslint onevar: true, undef: true, newcap: true, nomen: true, regexp: true, plusplus: true, strict: true */
 /*global require: true, provide: true */
 (function () {
   "use strict";
+  /*jslint onevar: true, undef: true, newcap: true, nomen: true, regexp: true, plusplus: true, strict: true */
 
   require('require-kiss');
 
@@ -12,6 +12,12 @@
    * @compatibility   Chrome, Firefox, IE 5+, Opera, Safari, WebKit, Others
    */
 
+  function debug(matches) {
+    matches.forEach(function (match, i) {
+      console.log(i, match);
+    });
+  }
+
   function ISO(datestring) {
                     //    1        3        5        7       8       10     12        13   15     16      17
                     // yyyy   -   mm   -   dd  'T'  HH  :   MM   :   ss    .ms       'Z'  +/-     HH  :   MM 
@@ -21,14 +27,16 @@
         date = new Date(),
         hour,
         minute,
-        opstring;
+        aheadOfUtc;
 
       if(null === match) {
         return false;
         // throw new Error("Invalid ISO String");
       }
 
-      // The bit-shifting is shorthand for `(undefined !== m) && m.valueOf(m) || 0`
+      //debug(match);
+
+      // The bit-shifting is shorthand for `Number(m) || 0`
       date.setUTCFullYear(match[1] >> 0);
       date.setUTCMonth(match[3] ? (match[3] >> 0) - 1 : 0);
       date.setUTCDate(match[5] >> 0);
@@ -36,13 +44,23 @@
       date.setUTCMinutes(match[8] >> 0);
       date.setUTCSeconds(match[10] >> 0);
       date.setUTCMilliseconds(match[12] >> 0);
+
+      // Adjust to UTC offset
       if (match[13] && match[13] !== "Z") {
         hour = match[16] >> 0;
         minute = match[17] >> 0;
-        opstring = (match[15] === "+");
+        aheadOfUtc = (match[15] === "+");
 
-        date.setUTCHours((match[7] >> 0) + opstring ? -hour : hour);
-        date.setUTCMinutes((match[8] >> 0) + opstring ? -minute : minute);
+        hour = hour * 60 * 60 * 1000;
+        minute = minute * 60 * 1000;
+
+        if (aheadOfUtc) {
+          hour = -hour;
+          minute = -minute;
+        }
+
+        // easy dateline wrapping
+        date = new Date(date.valueOf() + hour + minute);
       }
       return date;
   }
@@ -92,5 +110,5 @@
     Date.prototype.toISOString = Date.prototype.toISOString || toISOString;
   }
 
-  provide('date');
+  provide('./date');
 }());
