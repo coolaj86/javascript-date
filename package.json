@@ -1,7 +1,7 @@
 {
   "name": "date",
   "description": "Date and Time tools for Browser JavaScript and Node.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/coolaj86/javascript-date",
   "repository": {
     "type": "git",
