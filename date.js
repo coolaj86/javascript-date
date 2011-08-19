@@ -3,8 +3,6 @@
   "use strict";
   /*jslint onevar: true, undef: true, newcap: true, nomen: true, regexp: true, plusplus: true, strict: true */
 
-  require('require-kiss');
-
   /** ES5 ISO Date Parser Plus toISOString Method
    * @author          Andrea Giammarchi
    * @blog            WebReflection
@@ -110,5 +108,4 @@
     Date.prototype.toISOString = Date.prototype.toISOString || toISOString;
   }
 
-  provide('./date');
 }());
