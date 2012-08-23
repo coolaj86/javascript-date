@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/coolaj86/javascript-date.png)](http://travis-ci.org/coolaj86/javascript-date)
 Date
 ====
 
